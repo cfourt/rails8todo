@@ -1,0 +1,30 @@
+# == Schema Information
+#
+# Table name: tasks
+#
+#  id           :integer          not null, primary key
+#  completed    :boolean
+#  completed_at :datetime
+#  details      :text
+#  due_date     :datetime
+#  past_due     :boolean
+#  title        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+one:
+  title: MyString
+  details: MyText
+  completed: false
+  completed_at: 2024-10-08 10:47:33
+  due_date: 2024-10-08 10:47:33
+  past_due: false
+
+two:
+  title: MyString
+  details: MyText
+  completed: false
+  completed_at: 2024-10-08 10:47:33
+  due_date: 2024-10-08 10:47:33
+  past_due: false
