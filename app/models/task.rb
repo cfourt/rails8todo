@@ -20,6 +20,13 @@ class Task < ApplicationRecord
     # TODO - https://edgeguides.rubyonrails.org/active_storage_overview.html for image-uploads
     has_rich_text :details
     after_validation :update_past_due, if: ->(task) {task.due_date} 
+    scope :past_due_first, -> {Task.all.order('past_due desc')}
+    
+    # TODO
+    def mark_complete
+      # toggle boolean
+      # set completed_at
+    end
 
     def update_past_due
       self.past_due = true if self.due_date <= Time.now

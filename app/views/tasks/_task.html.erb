@@ -1,32 +1,14 @@
 <div id="<%= dom_id task %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= task.title %>
+  <p class="my-5 text-lg font-medium">
+   <%= formatted_title(task) %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Details:</strong>
     <%= task.details %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Completed:</strong>
-    <%= task.completed %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Completed at:</strong>
-    <%= task.completed_at %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Due date:</strong>
     <%= task.due_date %>
   </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Past due:</strong>
-    <%= task.past_due %>
-  </p>
-
 </div>

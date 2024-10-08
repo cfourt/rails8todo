@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+
+# TODOs
+- [ ] Add completed scope/view
+- [ ] Add past_due scope/view
+- [ ] add sort scope/view
+- [ ] add hotwire task builder for index view
+- [ ] adjust routing for create/edit flow
