@@ -8,9 +8,13 @@
 #  details      :text
 #  due_date     :datetime
 #  past_due     :boolean
-#  title        :string
+#  title        :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#
+# Indexes
+#
+#  index_tasks_on_due_date  (due_date) WHERE completed = false /*application='Todo'*/
 #
 require "test_helper"
 

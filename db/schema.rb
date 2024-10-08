@@ -58,6 +58,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_08_174733) do
     t.boolean "past_due"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["due_date"], name: "index_tasks_on_due_date", where: "completed = false /*application='Todo'*/"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

@@ -12,5 +12,7 @@ class CreateTasks < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
+    
+    add_index :tasks, :due_date, where: "completed = false"
   end
 end
