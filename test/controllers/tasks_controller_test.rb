@@ -1,8 +1,12 @@
 require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @task = tasks(:one)
+    @user = @task.user
+    sign_in @user
   end
 
   test "should get index" do
@@ -17,10 +21,10 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create task" do
     assert_difference("Task.count") do
-      post tasks_url, params: { task: { completed: @task.completed, completed_at: @task.completed_at, details: @task.details, due_date: @task.due_date, past_due: @task.past_due, title: @task.title } }
+      post tasks_url, params: { task: { user_id: @user.id, completed: @task.completed, completed_at: @task.completed_at, details: @task.details, due_date: @task.due_date, past_due: @task.past_due, title: @task.title } }
     end
 
-    assert_redirected_to task_url(Task.last)
+    assert_redirected_to tasks_url
   end
 
   test "should show task" do
@@ -34,8 +38,8 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update task" do
-    patch task_url(@task), params: { task: { completed: @task.completed, completed_at: @task.completed_at, details: @task.details, due_date: @task.due_date, past_due: @task.past_due, title: @task.title } }
-    assert_redirected_to task_url(@task)
+    patch task_url(@task), params: { task: { user_id: @user.id, completed: @task.completed, completed_at: @task.completed_at, details: @task.details, due_date: @task.due_date, past_due: @task.past_due, title: @task.title } }
+    assert_redirected_to tasks_url
   end
 
   test "should destroy task" do
