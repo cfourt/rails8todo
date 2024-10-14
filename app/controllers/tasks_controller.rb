@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy toggle_complete]
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all.past_due_first
+    @tasks = Task.all.priority_order
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: "Task was successfully created." }
+        format.html { redirect_to tasks_path, notice: "Task was successfully created." }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: "Task was successfully updated." }
+        format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
         format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,14 +57,20 @@ class TasksController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params.expect(:id))
-    end
+  def toggle_complete
+    @task.toggle(:completed).save
+    render json: { message: "Success" }
+  end
 
-    # Only allow a list of trusted parameters through.
-    def task_params
-      params.expect(task: [ :title, :details, :completed, :completed_at, :due_date, :past_due ])
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def task_params
+    params.expect(task: [:title, :details, :completed, :completed_at, :due_date, :past_due])
+  end
 end

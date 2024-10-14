@@ -1,14 +1,40 @@
-<div id="<%= dom_id task %>">
-  <p class="my-5 text-lg font-medium">
-   <%= formatted_title(task) %>
-  </p>
+<!-- TODO add an expand task thing in here, transition CSS -->
 
-  <p class="my-5">
-    <%= task.details %>
-  </p>
+<div id="<%= dom_id task %>" class="mb-5"> <!-- border-gray-100/50 border-2 rounded-md p-3 -->
+  <%= form_with(model: task) do |form| %>
+    <%= form.check_box :completed,
+                       data: {
+                         id: task.id,
+                         action: "tasks#toggle_complete"
+                       },
+                       class: "mr-2 align-middle bg-gray-50 border-gray-300 focus:ring-3 focus:color-green-500  \
+                       focus:ring-green-300 h-5 w-5 rounded checked:bg-green-500 hover:bg-green-200 hover:border-green-500"
+    %>
+    <%= form.label :completed, formatted_title(task), class: 'my-1 text-lg font-medium' %>
+  <% end %>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Due date:</strong>
-    <%= task.due_date %>
-  </p>
+  <!--  <p class="my-1 text-lg font-medium">-->
+  <%#= formatted_title(task) %>
+  <!--  </p>-->
+  <%= link_to edit_task_path(task) do %>
+    <div class="ml-8 pl-2 border-l-2 border-gray-100 ">
+      <%= task.details %>
+      <%= content_tag :p,
+                      formatted_due_date(task),
+                      class: "my-1 text-sm text-gray-500 font-bold" unless task.completed?
+      %>
+    </div>
+  <% end %>
+
+  <!-- TODO add JS to expand and collapse the trix content
+  app/assets/stylesheets/actiontext.css specifies .trix-content,
+  Let's add:
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Change the number for different limits */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+  by default and then remove it when clicking the expand button.
+
+  You'll need line item specificity, hence the style attr, not class modification (could class swap as well)
+  -->
 </div>

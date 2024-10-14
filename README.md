@@ -30,3 +30,7 @@ Things you may want to cover:
 - [ ] add sort scope/view
 - [ ] add hotwire task builder for index view
 - [ ] adjust routing for create/edit flow
+- [ ] docker-ize
+- [ ] add accounts and auth
+- [ ] hosting
+- [ ] stress test sqlite3
