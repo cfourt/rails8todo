@@ -1,42 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A task app to play with the latest Rails 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
+- Ruby version: 3.3.4
+- Rails 8-beta1
+- Sqlite3
 
 * Database creation
-
-* Database initialization
+potentially might need to run: `touch storage/development_queue.sqlite3` (and others like cache and cable )
+then `bin/setup`
 
 * How to run the test suite
+I'd like to set up TLDR to get this running every save with a focus on performance
 
 * Services (job queues, cache servers, search engines, etc.)
-
+Solid trio to start
 * Deployment instructions
-
+TODO
 * ...
 
-
 # TODOs
-- [ ] Add completed scope/view
-- [ ] Add past_due scope/view
-- [ ] add sort scope/view
-- [ ] add hotwire task builder for index view
+- [ ] Add completed, past_due scope/view
+- [ ] add hotwire task builder for index view (compare turbo-frame vs stimulus experience)
 - [ ] adjust routing for create/edit flow
 - [ ] docker-ize
-- [ ] add accounts and auth
 - [ ] hosting
 - [ ] stress test sqlite3
 - [ ] Devise prod setup†
 - [ ] Devise styling
-- [ ] Look into PicoCSS
 - [ ] click to expand task details
 
 
