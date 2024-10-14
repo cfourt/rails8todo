@@ -18,6 +18,9 @@
 #
 class Task < ApplicationRecord
   # TODO - https://edgeguides.rubyonrails.org/active_storage_overview.html for image-uploads
+  belongs_to :user
+  validates :user, presence: true
+
   has_rich_text :details
   after_validation :update_past_due, if: ->(task) { task.due_date }
   after_validation :set_completed_at, if: :completed?

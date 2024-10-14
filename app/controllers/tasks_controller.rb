@@ -58,6 +58,7 @@ class TasksController < ApplicationController
   end
 
   def toggle_complete
+    binding.b
     @task.toggle(:completed).save
     render json: { message: "Success" }
   end
@@ -71,6 +72,6 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.expect(task: [:title, :details, :completed, :completed_at, :due_date, :past_due])
+    params.expect(task: [:user_id, :title, :details, :completed, :completed_at, :due_date, :past_due])
   end
 end

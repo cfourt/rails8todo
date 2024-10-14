@@ -10,15 +10,30 @@
 
 now = Time.current
 
-{ "Don't forget the milk" => {details: "1 Gal, Regular or Almond", due_date: now + 1.day},
- "Make a sandwich" => {details: "PB&J", due_date: now + 1.day},
- "Do 20 push-ups" => {details: "Or at least 2 :)", due_date: now + 1.day},
- "Relax" => {details: "You're doing great", due_date: now + 1.day} ,
- "Past Due!" => {details: "You're doing great", due_date: now - 1.day} ,
+user = User.where(email: "connorfourt@gmail.com").first_or_initialize
+user.update!({ password: 'password', password_confirmation: 'password' })
+
+{
+  "Don't forget the milk" => {
+    user_id: 1, details: "1 Gal, Regular or Almond", due_date: now + 1.day
+  },
+  "Make a sandwich" => {
+    user_id: 1, details: "PB&J", due_date: now + 1.day
+  },
+  "Do 20 push-ups" => {
+    user_id: 1, details: "Or at least 2 :)", due_date: now + 1.day
+  },
+  "Relax" => {
+    user_id: 1, details: "You're doing great", due_date: now + 1.day
+  },
+  "Past Due!" => {
+    user_id: 1, details: "You're doing great", due_date: now - 1.day
+  },
 }.each do |title, attrs|
   Task.find_or_create_by!(
     title: title,
+    user_id: attrs[:user_id],
     details: attrs[:details],
     due_date: attrs[:due_date]
-    )
+  )
 end

@@ -1,4 +1,7 @@
 <%= form_with(model: task, class: "contents") do |form| %>
+  <%= form.hidden_field :user_id, value: current_user.id %>
+
+
   <% if task.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>

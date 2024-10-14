@@ -24,6 +24,19 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <nav class="container flex mt-5 mx-auto">
+      <%= link_to "← Tasks", root_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white font-medium' %>
+
+      <% if user_signed_in? %>
+        <%= link_to "Profile", edit_user_registration_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white  font-medium' %>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white  font-medium' %>
+      <% else %>
+        <%#= link_to "Sign Up", new_user_registration_path_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white  font-medium' %>
+        <%#= link_to "Login", new_user_session_path, class: 'rounded-lg py-3 px-5 bg-blue-600 text-white  font-medium' %>
+      <% end %>
+    </nav>
     <main class="container mx-auto w-2/3 mt-28 px-5 flex">
       <%= yield %>
     </main>
