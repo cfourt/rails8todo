@@ -10,8 +10,8 @@
 
 now = Time.current
 
-user = User.where(email: "connorfourt@gmail.com").first_or_initialize
-user.update!({ password: 'password', password_confirmation: 'password' })
+user = User.where(email: ENV[DEV_EMAIL]).first_or_initialize
+user.update!({ password: ENV[DEV_PASSWORD], password_confirmation: ENV[DEV_PASSWORD] })
 
 {
   "Don't forget the milk" => {
