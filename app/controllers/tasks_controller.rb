@@ -58,7 +58,6 @@ class TasksController < ApplicationController
   end
 
   def toggle_complete
-    binding.b
     @task.toggle(:completed).save
     render json: { message: "Success" }
   end

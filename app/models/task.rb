@@ -15,15 +15,17 @@
 #
 # Indexes
 #
-#  index_tasks_on_due_date  (due_date) WHERE completed = false /*application='Todo'*/ /*application='Todo'*/ /*application='Todo'*/
+#  index_tasks_on_due_date  (due_date) WHERE completed = false /*application='Todo'*/
 #  index_tasks_on_user_id   (user_id)
 #
 class Task < ApplicationRecord
   # TODO - https://edgeguides.rubyonrails.org/active_storage_overview.html for image-uploads
   belongs_to :user
-  validates :user, presence: true
-
   has_rich_text :details
+
+  validates :user, presence: true
+  validates :title, presence: true
+
   after_validation :update_past_due, if: ->(task) { task.due_date }
   after_validation :set_completed_at, if: :completed?
 
@@ -36,12 +38,6 @@ class Task < ApplicationRecord
   }
 
   scope :priority_order, -> {order_by_completion.order_by_due_date}
-
-  # TODO
-  def complete!
-    # toggle boolean
-    # set completed_at
-  end
 
   def past_due?
     self.past_due == true || self.should_be_past_due?
