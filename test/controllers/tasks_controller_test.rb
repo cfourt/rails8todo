@@ -49,4 +49,14 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tasks_url
   end
+
+  test "should toggle task.completed" do
+    assert_changes "@task.reload.completed",
+                   from: @task.completed,
+                   to: !@task.completed do
+      patch toggle_complete_task_url(@task), as: :json
+    end
+
+    assert_response :success
+  end
 end

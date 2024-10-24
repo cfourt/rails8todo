@@ -59,7 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_14_170507) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["due_date"], name: "index_tasks_on_due_date", where: "completed = false /*application='Todo'*/ /*application='Todo'*/ /*application='Todo'*/"
+    t.index ["due_date"], name: "index_tasks_on_due_date", where: "completed = false /*application='Todo'*/"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
